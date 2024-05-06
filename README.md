@@ -1,2 +1,3 @@
 # INST126-Proj2-word-guess
 word guess game
+My game will be a word guessing game. You first enter how many players are playing. Then you enter the names of the players. A word is randomly chosen out of the word bank(i just added random words in there). Each player takes a turn guessing a letter and the program will output how many times the letter occurs in the word. After each guessed letter, it will display what letters have been guessed before the next player goes. If a player thinks they have the word they can enter "word" to then get the prompt to enter the word. The game ends once a player guesses the word correctly.
