@@ -15,15 +15,15 @@ def check_let(guess, secret_word):
 def check_word(guess, secret_word):
     return guess == secret_word
 
-def display_guessed_letters(letters):
-    print("Letters guessed so far:", ", ".join(letters))
+def display_guessed_let(letters):
+    print("Guessed Letterss so far:", ", ".join(letters))
 
 def main():
     words = [""] ### find words for word bank
     num_players = int(input("Enter the number of players: ")) ## num of players
     players = [Player(input(f"Enter name of player {i+1}: ")) for i in range(num_players)] ## player names
     secret_word = choose_word(words)
-    guessed_letters = []
+    guessed_let = []
 
     print("word chosen... start")
 
@@ -49,11 +49,11 @@ def main():
             ## guess letter
             else:
                 player.letter_guesses += 1
-                guessed_letters.append(letter_guess) ## change guessed letter based on how many guesses
+                guessed_let.append(letter_guess) ## change guessed letter based on how many guesses
                 occurrences = check_let(letter_guess, secret_word) ## check how many times letter in word
                 print(f"The letter '{letter_guess}' occurs {occurrences} time(s) in the word.")
                 
-            display_guessed_letters(guessed_letters)
+            display_guessed_let(guessed_let)
 
 if __name__ == "__main__":
     main()
