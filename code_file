@@ -1,0 +1,59 @@
+import random
+
+class Player:
+    def __init__(self, name):
+        self.name = name
+        self.letter_guesses = 0
+        self.word_guesses = 0
+
+def choose_word(words):
+    return random.choice(words)
+
+def check_let(guess, secret_word):
+    return secret_word.count(guess)
+
+def check_word(guess, secret_word):
+    return guess == secret_word
+
+def display_guessed_letters(letters):
+    print("Letters guessed so far:", ", ".join(letters))
+
+def main():
+    words = [""] ### find words for word bank
+    num_players = int(input("Enter the number of players: ")) ## num of players
+    players = [Player(input(f"Enter name of player {i+1}: ")) for i in range(num_players)] ## player names
+    secret_word = choose_word(words)
+    guessed_letters = []
+
+    print("word chosen... start")
+
+    while True:
+        for player in players:
+            print(f"{player.name}'s turn:")
+            letter_guess = input("Guess a letter or type 'word' to guess the entire word: ").lower()
+            ### guess word
+            if letter_guess == "word":
+                word_guess = input("Guess the word: ").lower()
+                player.word_guesses += 1
+                if check_word(word_guess, secret_word):
+                    print(f"Congratulations! {player.name} guessed the word correctly.")
+                    print(f"Final score for {player.name}: {player.letter_guesses}")
+                    return
+               ### wrong word
+                else:
+                    print("Incorrect word guess.")
+                    player.word_guesses += 1
+                    if player.word_guesses == 3:
+                        print("You have exhausted all word guesses. Game over.")
+                        return
+            ## guess letter
+            else:
+                player.letter_guesses += 1
+                guessed_letters.append(letter_guess) ## change guessed letter based on how many guesses
+                occurrences = check_let(letter_guess, secret_word) ## check how many times letter in word
+                print(f"The letter '{letter_guess}' occurs {occurrences} time(s) in the word.")
+                
+            display_guessed_letters(guessed_letters)
+
+if __name__ == "__main__":
+    main()
